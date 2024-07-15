@@ -69,6 +69,8 @@ git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt  
 git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat   # kucat主题
 git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design # design主题
 
+src/gz openwrt_kiddin9 https://dl.openwrt.ai/packages-23.05/x86_64/kiddin9          # luci-app-quickstart
+
 #添加bypass插件
 git clone -b bypass https://github.com/shidahuilang/openwrt-package.git package/luci-app-bypass
 
