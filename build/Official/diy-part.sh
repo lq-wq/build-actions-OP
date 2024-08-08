@@ -69,6 +69,8 @@ git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt  
 git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat   # kucat主题
 git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design # design主题
 git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quickstart   # iStoreOS-web
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky      # luci-app-lucky 端口转发
+
 
 #添加bypass插件
 git clone -b bypass https://github.com/shidahuilang/openwrt-package.git package/luci-app-bypass
