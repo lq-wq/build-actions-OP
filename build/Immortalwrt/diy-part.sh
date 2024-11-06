@@ -67,6 +67,7 @@ export Cancel_running="0"                    # 取消路由器每天跑分任务
 # 添加APP插件
 git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt      # chatgpt-web
 git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat   # kucat主题
+git clone https://github.com/sirpdboy/luci-app-eqosplus package/luci-app-eqosplus   # 定时限速
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
 export amlogic_model="s905d"
