@@ -64,15 +64,12 @@ export Delete_unnecessary_items="0"          # 个别机型内一堆其他机型
 export Disable_53_redirection="0"            # 删除DNS强制重定向53端口防火墙规则(个别源码本身不带此功能)(1为启用命令,填0为不作修改)
 export Cancel_running="0"                    # 取消路由器每天跑分任务(个别源码本身不带此功能)(1为启用命令,填0为不作修改)
 
-
-# 晶晨CPU系列打包固件设置(不懂请看说明)
-export amlogic_model="s905d"
-export amlogic_kernel="5.10.01_6.1.01"
-export auto_kernel="true"
-export rootfs_size="2560"
-export kernel_usage="stable"
-
-
+# 添加APP插件
+#git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt      # chatgpt-web
+#git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat   # kucat主题
+git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quickstart   # iStoreOS-web
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky      # luci-app-lucky 端口转发
+#git clone https://github.com/morytyann/OpenWrt-mihomo.git package/luci-app-mihomo   #科学上网
 
 # 修改插件名字
 sed -i 's/"aMule设置"/"电驴下载"/g' `egrep "aMule设置" -rl ./`
