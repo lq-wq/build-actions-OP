@@ -130,6 +130,12 @@ jobs:
     - name: 准备结束
       uses: actions/checkout@v4
 
+    # Insert this step before the `部署编译环境` step
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23'
+        
     - name: 检测文件和对比上游版本
       run: |
         cd ${GITHUB_WORKSPACE}
