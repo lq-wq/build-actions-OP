@@ -130,32 +130,36 @@ jobs:
     - name: 准备结束
       uses: actions/checkout@v4
 
-    # 新增关键步骤：清理旧版 Go
-    - name: 清除系统 Go 环境
-      run: |
-        # 移除 apt 安装的 Go
-        sudo apt remove --purge golang golang-go -y 2>/dev/null || true
-        # 清除手动安装的 Go
-        sudo rm -rf /usr/local/go
-        # 清理残留环境变量
-        sed -i '/\/usr\/local\/go\/bin/d' ~/.bashrc
-        sed -i '/\/go\/bin/d' ~/.bashrc
+    - name: 彻底清除旧版 Go
+        run: |
+          sudo apt-get remove --purge -y golang golang-go golang-1.22* 2>/dev/null || true
+          sudo rm -rf /usr/local/go /opt/go $HOME/go
+          sed -i '/\/usr\/local\/go\/bin/d' ~/.bashrc
 
-    # 优化后的 Go 安装步骤
-    - name: 安装 Go 1.23+
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.23'
-        check-latest: true  # 强制检查最新补丁版本
-      env:
-        GOTOOLCHAIN: "local"  # 强制使用本地工具链
+      - name: 安装并锁定 Go 1.23
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.23'
+          check-latest: true
+        env:
+          GOTOOLCHAIN: "local"
 
-    - name: 验证 Go 环境
-      run: |
-        echo "当前 Go 版本: $(go version)"
-        echo "Go 路径: $(which go)"
-        echo "GOPATH: $GOPATH"
-        echo "PATH: $PATH"
+      - name: 固化 Go 环境变量
+        run: |
+          echo "GOROOT=$(go env GOROOT)" >> $GITHUB_ENV
+          echo "PATH=$(go env GOPATH)/bin:$(go env GOROOT)/bin:$PATH" >> $GITHUB_ENV
+
+      - name: 环境验证
+        run: |
+          go version
+          which go
+
+      - name: 编译前修复工具链
+        run: |
+          find ./staging_dir -type f -name "go" -exec rm -f {} \; 2>/dev/null || true
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a -f
+          sed -i 's/GO_VERSION:=.*/GO_VERSION:=1.23+/' feeds/packages/net/alist/Makefile
         
     - name: 检测文件和对比上游版本
       run: |
