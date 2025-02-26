@@ -129,27 +129,7 @@ jobs:
     
     - name: 准备结束
       uses: actions/checkout@v4
-
-    # 步骤 1: 检出 OpenWRT 源码到 openwrt 目录
-    - name: 准备结束
-      uses: actions/checkout@v4
-      with:
-        path: openwrt  # 明确指定检出到 openwrt 子目录
-
-    # 步骤 2: 进入 OpenWRT 目录执行清理和配置
-    - name: 编译前修复工具链
-      working-directory: ./openwrt  # 关键：指定工作目录
-      run: |
-        # 删除残留的 Go 可执行文件
-        find staging_dir -type f -name "go" -exec rm -f {} \; 2>/dev/null || true
-          
-        # 更新 feeds（此时已确保在 openwrt 目录下）
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a -f
-          
-        # 修改 alist 的 Go 版本要求
-        sed -i 's/GO_VERSION:=.*/GO_VERSION:=1.23+/' feeds/packages/net/alist/Makefile
-        
+       
     - name: 检测文件和对比上游版本
       run: |
         cd ${GITHUB_WORKSPACE}
