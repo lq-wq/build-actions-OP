@@ -75,22 +75,18 @@ git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky      # lu
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# System and network optimizations
-optimize_sysctl() {
-  echo "$1" >> package/base-files/files/etc/sysctl.conf
-}
-optimize_sysctl 'net.core.somaxconn = 1024'
-optimize_sysctl 'net.core.netdev_max_backlog = 2048'
-optimize_sysctl 'net.ipv4.tcp_max_syn_backlog = 2048'
-optimize_sysctl 'net.ipv4.tcp_fin_timeout = 30'
-optimize_sysctl 'net.ipv4.tcp_tw_reuse = 1'
-optimize_sysctl 'net.core.default_qdisc = fq'
-optimize_sysctl 'net.ipv4.tcp_congestion_control = bbr'
+# 系统和网络优化
+echo "Step 10: System and network optimization..."
+mkdir -p package/base-files/files/etc
+echo "net.core.default_qdisc=fq" > package/base-files/files/etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> package/base-files/files/etc/sysctl.conf
+echo "vm.swappiness=10" >> package/base-files/files/etc/sysctl.conf
+echo "vm.min_free_kbytes=65536" >> package/base-files/files/etc/sysctl.conf
 
-# Adjust file descriptor limits
-echo '* soft nofile 51200' >> package/base-files/files/etc/security/limits.conf
-echo '* hard nofile 51200' >> package-base-files/files/etc/security/limits.conf
-optimize_sysctl 'fs.file-max = 100000'
+# 优化IRQ和CPU调度
+echo "Step 11: Optimizing IRQ and CPU scheduling..."
+echo "kernel.sched_migration_cost_ns=5000000" >> package/base-files/files/etc/sysctl.conf
+echo "kernel.sched_autogroup_enabled=1" >> package/base-files/files/etc/sysctl.conf
 
 # 修改插件名字
 sed -i 's/"终端"/"TTYD"/g' `egrep "终端" -rl ./`
