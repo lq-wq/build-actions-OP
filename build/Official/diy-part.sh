@@ -77,16 +77,35 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 
 # 系统和网络优化
 echo "Step 10: System and network optimization..."
-mkdir -p package/base-files/files/etc
-echo "net.core.default_qdisc=fq" > package/base-files/files/etc/sysctl.conf
-echo "net.ipv4.tcp_congestion_control=bbr" >> package/base-files/files/etc/sysctl.conf
-echo "vm.swappiness=10" >> package/base-files/files/etc/sysctl.conf
-echo "vm.min_free_kbytes=65536" >> package/base-files/files/etc/sysctl.conf
+mkdir -p package/base-files/files/etc/sysctl.d
 
-# 优化IRQ和CPU调度
-echo "Step 11: Optimizing IRQ and CPU scheduling..."
-echo "kernel.sched_migration_cost_ns=5000000" >> package/base-files/files/etc/sysctl.conf
-echo "kernel.sched_autogroup_enabled=1" >> package/base-files/files/etc/sysctl.conf
+# 创建主优化文件
+cat > package/base-files/files/etc/sysctl.d/99-optimize.conf << EOF
+# 网络层优化
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
+net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_sack = 1
+
+# 内存管理 (自动计算 1% 内存)
+vm.swappiness = 10
+vm.vfs_cache_pressure = 100
+
+# 连接数扩展
+net.netfilter.nf_conntrack_max = 65536
+net.ipv4.netfilter.ip_conntrack_max = 65536
+
+# CPU调度 (针对多核优化)
+kernel.sched_migration_cost_ns = 5000000
+kernel.sched_autogroup_enabled = 0
+EOF
+
+# 硬件相关优化 (独立文件)
+cat > package/base-files/files/etc/sysctl.d/98-hw.conf << EOF
+# 根据硬件内存动态计算 min_free_kbytes (示例按 2% 计算)
+vm.min_free_kbytes = \$(( (\$(awk '/MemTotal/ {print \$2}' /proc/meminfo) * 2) / 100 ))
+EOF
 
 # 修改插件名字
 sed -i 's/"终端"/"TTYD"/g' `egrep "终端" -rl ./`
