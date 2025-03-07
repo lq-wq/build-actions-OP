@@ -16,13 +16,14 @@ on:
       REPO_BRANCH:
         description: '（Lienol源码）请选择源码分支'
         required: true
-        default: '19.07'
+        default: '24.10'
         type: choice
         options:
           - '22.03'
           - '19.07'
           - '21.02'
           - '23.05'
+          - '24.10'
           - 'main'
       CONFIG_FILE:
         description: '请选择配置文件'
