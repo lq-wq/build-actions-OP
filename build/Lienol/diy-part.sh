@@ -71,6 +71,10 @@ git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quic
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky      # luci-app-lucky 端口转发
 #git clone https://github.com/morytyann/OpenWrt-mihomo.git package/luci-app-mihomo   #科学上网
 
+# golang 1.22.x 
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+
 # 修改插件名字
 sed -i 's/"终端"/"TTYD"/g' `egrep "终端" -rl ./`
 sed -i 's/"aMule设置"/"电驴下载"/g' `egrep "aMule设置" -rl ./`
