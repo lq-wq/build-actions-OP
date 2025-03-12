@@ -245,6 +245,11 @@ jobs:
         cd ${GITHUB_WORKSPACE}
         source ${BUILD_PATH}/common.sh && build_openwrt
         
+    - name: Cleanup
+      run: |
+        sudo apt clean
+        rm -rf ~/tmp/*
+    
     - name: Telegram或pushplus信息通知
       if: env.PUSH_PLUS_TOKEN && env.INFORMATION_NOTICE == 'PUSH' || env.TELEGRAM_BOT_TOKEN && env.INFORMATION_NOTICE == 'TG'
       run: |
