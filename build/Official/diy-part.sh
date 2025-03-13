@@ -65,6 +65,7 @@ export Cancel_running="0"                    # 取消路由器每天跑分任务
 #git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat        # kucat主题
 git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quickstart    # iStoreOS-web
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky                    # luci-app-lucky 端口转发
+git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp       # 一键自动格式化分区、扩容、自动挂载插件
 
 # add feed
 echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main" >> "feeds.conf.default"   #科学上网
