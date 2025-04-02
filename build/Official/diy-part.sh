@@ -60,12 +60,12 @@ export Cancel_running="0"                    # 取消路由器每天跑分任务
 # 添加APP插件
 # git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt           # chatgpt-web
 # git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat        # kucat主题
-git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quickstart    # iStoreOS-web
+# git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quickstart    # iStoreOS-web
 # git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky                    # luci-app-lucky 端口转发
 
 # add feed
 # echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main" >> "feeds.conf.default"   #科学上网
-
+echo "src-git infinityfreedomng https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git" >> "feeds.conf.default"  infinityfreedom-ng主题
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
 export amlogic_model="s905d"
