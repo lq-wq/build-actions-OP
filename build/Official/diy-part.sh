@@ -65,7 +65,7 @@ export Cancel_running="0"                    # 取消路由器每天跑分任务
 
 # add feed
 # echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main" >> "feeds.conf.default"   #科学上网
-echo "src-git infinityfreedomng https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git" >> "feeds.conf.default"  infinityfreedom-ng主题
+# echo "src-git infinityfreedomng https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git" >> "feeds.conf.default"  infinityfreedom-ng主题
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
 export amlogic_model="s905d"
