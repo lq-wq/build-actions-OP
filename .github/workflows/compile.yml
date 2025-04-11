@@ -65,12 +65,12 @@ jobs:
         testing: false
         
     - name: 手动清理磁盘空间
-        run: |
-          sudo apt-get clean
-          sudo rm -rf /var/lib/apt/lists/*
-          sudo rm -rf /tmp/*
-          sudo rm -rf ~/.cache
-          sudo du -sh /tmp/* | sort -rh | head -n 10
+      run: |
+        sudo apt-get clean
+        sudo rm -rf /var/lib/apt/lists/*
+        sudo rm -rf /tmp/*
+        sudo rm -rf ~/.cache
+        sudo du -sh /tmp/* | sort -rh | head -n 10
           
     - name: 部署编译环境
       env:
