@@ -53,6 +53,16 @@ jobs:
     - name: 检测密匙/文件/版本
       uses: 281677160/common@mishi
         
+    - name: 释放磁盘空间
+        run: |
+          echo "Before cleanup:"
+          df -h
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost /usr/local/lib/android /opt/hostedtoolcache
+          sudo apt-get clean
+          sudo rm -rf /tmp/*
+          echo "After cleanup:"
+          df -h
+    
     - name: 部署编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
