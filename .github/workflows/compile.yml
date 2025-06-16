@@ -33,6 +33,9 @@ jobs:
        target: [Official]
 
     steps:
+    - name: 编译前磁盘空间检查
+      run: df -h
+      
     - name: 释放Ubuntu磁盘空间
       uses: danshui-git/free-disk-space@main
       with:
@@ -45,6 +48,9 @@ jobs:
         remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
         remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/lib/node_modules /usr/local/share/chromium /usr/local/share/powershell"
         
+    - name: 释放后磁盘空间检查
+      run: df -h
+    
     - name: 准备结束
       uses: actions/checkout@v4
 
@@ -92,6 +98,9 @@ jobs:
       run: |
         cd openwrt
         make download -j8
+    
+    - name: 编译前磁盘空间检查
+      run: df -h
     
     - name: 开始编译固件
       id: compile
