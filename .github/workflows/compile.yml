@@ -33,8 +33,11 @@ jobs:
        target: [Official]
 
     steps:
-    - name: 编译前磁盘空间检查
-      run: df -h
+    - name: 编译前清理磁盘
+      run: |
+        sudo rm -rf /home/runner/actions-runner/cached/_diag/*
+        sudo rm -rf /tmp/*
+        df -h
       
     - name: 释放Ubuntu磁盘空间
       uses: danshui-git/free-disk-space@main
@@ -48,8 +51,11 @@ jobs:
         remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
         remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/lib/node_modules /usr/local/share/chromium /usr/local/share/powershell"
         
-    - name: 释放后磁盘空间检查
-      run: df -h
+    - name: 再次清理磁盘
+      run: |
+        sudo rm -rf /home/runner/actions-runner/cached/_diag/*
+        sudo rm -rf /tmp/*
+        df -h
     
     - name: 准备结束
       uses: actions/checkout@v4
@@ -110,6 +116,13 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
 
+    - name: 编译后清理磁盘
+      if: always()
+      run: |
+        sudo rm -rf /home/runner/actions-runner/cached/_diag/*
+        sudo rm -rf /tmp/*
+        df -h
+        
     - name: 自动打包armsr_rootfs_tar_gz
       if: steps.compile.outcome == 'success' && env.ONLINE_FIRMWARE == 'true'
       uses: 281677160/common@aarch
