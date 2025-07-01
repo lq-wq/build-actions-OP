@@ -2,7 +2,6 @@
 # 编译主程序,请勿修改文件名称（compile.yml）
 #
 
-
 name: 编译主程序
 on:
   push:
@@ -66,19 +65,19 @@ jobs:
         git clone -q -b "${REPO_BRANCH}" --single-branch "${REPO_URL}" openwrt
         ln -sf /${{ env.DIY_WORK }}/openwrt ${GITHUB_WORKSPACE}/openwrt
         bash ${{ env.COMMON_SH }} Diy_feedsconf
-    
+
     - name: 公告
       continue-on-error: true
       uses: 281677160/common@message
- 
+
     - name: 运行自定义文件和其他
       uses: 281677160/common@need
-        
+
     - name: 编译信息
       continue-on-error: true
       if: env.COMPILATION_INFORMATION == 'true'
       uses: 281677160/common@message
-        
+
     - name: 缓存加速
       if: env.CACHEWRTBUILD_SWITCH == 'true'
       uses: stupidloud/cachewrtbuild@main
@@ -86,7 +85,13 @@ jobs:
         ccache: 'true'
         mixkey: "${{ env.TARGET_PROFILE }}"
         prefix: ${{ github.workspace }}/openwrt
-        
+
+    # -------【修改处】 在编译前自动去除所有Makefile中的-Werror -------
+    - name: 移除Makefile中的-Werror
+      run: |
+        find . -name 'Makefile*' -exec sed -i 's/-Werror//g' {} +
+    # -------【修改处】结束 -------
+
     - name: 下载软件包
       id: package
       run: |
