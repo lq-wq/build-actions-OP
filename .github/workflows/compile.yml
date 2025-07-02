@@ -86,12 +86,10 @@ jobs:
         mixkey: "${{ env.TARGET_PROFILE }}"
         prefix: ${{ github.workspace }}/openwrt
 
-    # -------【修改处】 在编译前自动去除所有Makefile中的-Werror -------
     - name: 移除Makefile中的-Werror
       run: |
         find . -name 'Makefile*' -exec sed -i 's/-Werror//g' {} +
-    # -------【修改处】结束 -------
-
+    
     - name: 下载软件包
       id: package
       run: |
