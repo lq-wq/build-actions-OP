@@ -67,15 +67,6 @@ git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quic
 # git clone https://github.com/sirpdboy/luci-app-advancedplus.git luci-app-advancedplus          # 酷猫主题设置
 # git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                       # 看门狗
 
-
-# 晶晨CPU系列打包固件设置(不懂请看说明)
-export amlogic_model="s905d"
-export amlogic_kernel="6.1.120_6.12.15"
-export auto_kernel="true"
-export rootfs_size="512/2560"
-export kernel_usage="stable"
-
-
 # 修改插件名字
 grep -rl '"终端"' . | xargs -r sed -i 's?"终端"?"TTYD"?g'
 grep -rl '"TTYD 终端"' . | xargs -r sed -i 's?"TTYD 终端"?"TTYD"?g'
