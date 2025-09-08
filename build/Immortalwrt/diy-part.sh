@@ -66,6 +66,7 @@ git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quic
 # git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan              # 计划任务插件（原定时设置）
 # git clone https://github.com/sirpdboy/luci-app-advancedplus.git luci-app-advancedplus          # 酷猫主题设置
 # git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                       # 看门狗
+git clone https://github.com/lq-wq/turboacc.git package/turboacc
 
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
