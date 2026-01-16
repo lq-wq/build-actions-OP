@@ -12,7 +12,7 @@ export Op_name="OpenWrt-NIT"                # 修改主机名称为OpenWrt-123(�
 
 # 内核和系统分区大小(不是每个机型都可用)
 export Kernel_partition_size="64"           # 内核分区大小,每个机型默认值不一样 (填写您想要的数值,默认一般16,数值以MB计算，填0为不作修改),如果你不懂就填0
-export Rootfs_partition_size="2048"         # 系统分区大小,每个机型默认值不一样 (填写您想要的数值,默认一般300左右,数值以MB计算，填0为不作修改),如果你不懂就填0
+export Rootfs_partition_size="1024"         # 系统分区大小,每个机型默认值不一样 (填写您想要的数值,默认一般300左右,数值以MB计算，填0为不作修改),如果你不懂就填0
 
 # 默认主题设置
 export Mandatory_theme="argon"              # 将bootstrap替换您需要的主题为必选主题(可自行更改您要的,源码要带此主题就行,填写名称也要写对) (填写主题名称,填0为不作修改)
@@ -59,13 +59,13 @@ export Cancel_running="0"                    # 取消路由器每天跑分任务
 
 # 添加APP插件
 # git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt               # chatgpt-web
-# git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat              # kucat主题
+# git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-app-kucat            # kucat主题
 git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quickstart         # iStoreOS-web
-# git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky                       # luci-app-lucky 端口转发
-# git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp            # 一键分区扩容
-# git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan              # 计划任务插件（原定时设置）
-# git clone https://github.com/sirpdboy/luci-app-advancedplus.git luci-app-advancedplus          # 酷猫主题设置
-# git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                       # 看门狗
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky                         # luci-app-lucky 端口转发
+# git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp          # 一键分区扩容
+# git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan            # 计划任务插件（原定时设置）
+# git clone https://github.com/sirpdboy/luci-app-advancedplus.git luci-app-advancedplus        # 酷猫主题设置
+# git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                     # 看门狗
 
 # 修改插件名字
 grep -rl '"终端"' . | xargs -r sed -i 's?"终端"?"TTYD"?g'
