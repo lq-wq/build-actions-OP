@@ -123,9 +123,9 @@ jobs:
 
     - name: 修复 Rust 配置
       run: |
-        cd openwrt/feeds/packages/lang/rust
-        # 修改config.toml.in文件
-        sed -i 's/download-ci-llvm = true/download-ci-llvm = "if-unchanged"/' config.toml.in
+        echo "RUSTFLAGS=-C link-arg=-fuse-ld=lld" >> $GITHUB_ENV
+        echo "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUSTFLAGS=-C link-arg=-fuse-ld=lld" >> $GITHUB_ENV
+        echo "RUST_BACKTRACE=full" >> $GITHUB_ENV
         
     - name: 下载"${{ matrix.target }}-${{ inputs.REPO_BRANCH }}"源码
       working-directory: /${{ env.DIY_WORK }}
