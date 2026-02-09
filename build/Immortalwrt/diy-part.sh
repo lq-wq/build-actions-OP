@@ -64,10 +64,11 @@ git clone https://github.com/lq-wq/luci-app-quickstart.git package/luci-app-quic
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky                         # luci-app-lucky 端口转发
 # git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp          # 一键分区扩容
 git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan              # 计划任务插件（原定时设置）
-# git clone https://github.com/sirpdboy/luci-app-advancedplus.git luci-app-advancedplus        # 酷猫主题设置
+# git clone https://github.com/sirpdboy/luci-app-advancedplus.git package/luci-app-advancedplus# 酷猫主题设置
 # git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                     # 看门狗
 git clone https://github.com/lq-wq/turboacc.git package/turboacc
-
+git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config # 主题设置
+git clone https://github.com/kenzok8/openwrt-packages/tree/master/luci-app-store package/luci-app-store
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
 export amlogic_model="s905d"
