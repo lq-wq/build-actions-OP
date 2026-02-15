@@ -68,6 +68,7 @@ git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskpla
 # git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                     # 看门狗
 git clone https://github.com/lq-wq/turboacc.git package/turboacc
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config # 主题设置
+src-git momo https://github.com/nikkinikki-org/OpenWrt-momo.git;main package/luci-app-momo     # 科学上网
 # git clone https://github.com/linkease/istore;main package/luci-app-store                       # 应用商店
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
