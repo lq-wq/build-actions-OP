@@ -71,6 +71,20 @@ git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-ap
 git clone https://github.com/nikkinikki-org/OpenWrt-momo.git;main package/luci-app-momo        # 科学上网
 # git clone https://github.com/linkease/istore;main package/luci-app-store                     # 应用商店
 
+# 添加 feeds
+echo "src-git openclaw https://github.com/10000ge10000/luci-app-openclaw.git" >> feeds.conf.default
+
+# 更新安装
+./scripts/feeds update -a
+./scripts/feeds install -a
+
+# 选择插件
+make menuconfig
+# LuCI → Applications → luci-app-openclaw
+
+# 编译
+make package/luci-app-openclaw/compile V=s
+
 # 晶晨CPU系列打包固件设置(不懂请看说明)
 export amlogic_model="s905d"
 export amlogic_kernel="6.1.120_6.12.15"
