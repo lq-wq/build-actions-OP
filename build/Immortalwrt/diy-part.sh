@@ -68,22 +68,11 @@ git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskpla
 # git clone https://github.com/sirpdboy/luci-app-watchdog package/watchdog                     # 看门狗
 git clone https://github.com/lq-wq/turboacc.git package/turboacc
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config # 主题设置
-# git clone https://github.com/linkease/istore;main package/luci-app-store                     # 应用商店
+git clone https://github.com/linkease/istore;main package/luci-app-store                       # 应用商店
 
 # 添加 feeds
 echo "src-git openclaw https://github.com/10000ge10000/luci-app-openclaw.git" >> feeds.conf.default
 echo "src-git momo https://github.com/nikkinikki-org/OpenWrt-momo.git;main" >> "feeds.conf.default"
-
-# 更新安装
-./scripts/feeds update -a
-./scripts/feeds install -a
-
-# 选择插件
-make menuconfig
-# LuCI → Applications → luci-app-openclaw
-
-# 编译
-make package/luci-app-openclaw/compile V=s
 
 # 晶晨CPU系列打包固件设置(不懂请看说明)
 export amlogic_model="s905d"
